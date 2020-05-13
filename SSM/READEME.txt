@@ -1,0 +1,5 @@
+travel.sql为sql文件
+采用ssm框架开发
+oa_biz为业务层
+oa_web为表现层
+oa_dao为持久层

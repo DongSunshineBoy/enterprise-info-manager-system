@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.rulan.oa.dao.ResortDetailDao">
+
+    <resultMap id="detail" type="priv.rulan.oa.entity.ResortDetailByTravel">
+      <id property="detail_id" column="detail_id" javaType="Integer"/>
+        <result property="detail_img" column="detail_img" javaType="String"/>
+        <result property="detail_desc" column="detail_desc" javaType="String"/>
+        <result property="detail_remark" column="detail_remark" javaType="String"/>
+    </resultMap>
+
+    <insert id="insert"  parameterType="Integer">
+        insert into resortDetail(detail_img,detail_desc,detail_remark)
+        values(#{detail_img},#{detail_desc},#{detail_remark})
+    </insert>
+
+    <update id="update" parameterType="Integer">
+        update resortDetail set detail_img=#{detail_img},detail_desc=#{detail_desc},detail_remark=#{detail_remark}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from resortDetail where id = #{id};
+    </delete>
+
+    <select id="select" parameterType="Integer" resultMap="detail">
+        select * from resortDetail where detail_id = #{detail_id}
+    </select>
+</mapper>

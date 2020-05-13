@@ -1,0 +1,13 @@
+:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Request\WnsRequestManager.cpp:99][WnsRequestManager::enqueueRequest]:insert request 141, current queue length 1
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Request\WnsRequestManager.cpp:121][WnsRequestManager::sendRequest]:send request seqNo 141 cmd wnscloud.heartbeat
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Request\WnsHeartbeatRequest.cpp:59][WnsHeartbeatRequest::buildBusiData]:scene:3, suid:wnscloud.
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Request\WnsRequestPacker.cpp:33][WnsRequestPacker::pack]:packing wnscloud.heartbeat, seqNo:141, busiData.size:23, networkType=[wifi],wid=[7041988759056670720],uid=[55B3C94F44EB72B36D881CDAD4180B11]
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Request\WnsRequest.cpp:260][WnsRequest::prepareExecute]:prepareExecute entry: cmd = wnscloud.heartbeat, seqNo = 141
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Request\WnsRequestPacker.cpp:201][WnsRequestPacker::generateRequestData]:sessionid is same, clear identifier!
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Session\WnsSession.cpp:142][WnsSession::send]:[sessionNo:1], send data, seqNo:141, dataLen:388, priority:5, timeout:20000ms, waitRsp:1.
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Connection\WnsConnectionBase.cpp:25][WnsWritePacket::WnsWritePacket]:[WnsLeak] WnsWritePacket[127a2848]::WnsWritePacket(): Enter
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Connection\WnsTcpConnection.cpp:62][WnsTcpConnection::WnsCheckPkgLenFunc]:recv wns head, uPacketTotalLen:388.
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Connection\WnsTcpConnection.cpp:263][WnsTcpConnection::realSend]:send succ. seqNo:141, length:388, ip:111.30.159.178, port:443.
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Session\WnsSessionManager.cpp:749][WnsSessionManager::sendDataSuccess]:sendDataSuccess. seqNo:141, len 388
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Connection\WnsConnectionBase.cpp:137][WnsConnectionBase::changeMSS]:connect get sockOpt TCP_MAXSEG result:0, errCode:0, curmss:1440
+[2020-04-30 18:53:12.781][Q:main][..\..\..\WnsCloudSDK\WnsCloudSDK\Connection\WnsConnectionBase.cpp:141][WnsConnectionBa

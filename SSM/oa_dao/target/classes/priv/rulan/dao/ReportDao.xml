@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.rulan.oa.dao.ReportDao">
+
+    <resultMap id="report" type="priv.rulan.oa.entity.Report">
+        <id property="rep_id" column="rep_id" javaType="Integer"/>
+        <result property="rep_reason" column="rep_reason" javaType="String"/>
+        <result property="rep_initiator" column="rep_initiator" javaType="String"/>
+        <result property="rep_date" column="rep_date" javaType="java.util.Date"/>
+        <result property="rep_unHandler" column="rep_unHandler" javaType="String"/>
+        <result property="rep_projectName" column="rep_projectName" javaType="String"/>
+        <result property="rep_majorClass" column="rep_majorClass" javaType="String"/>
+        <result property="rep_imageUrl" column="rep_imageUrl" javaType="String"/>
+        <result property="rep_status" column="rep_status" javaType="String"/>
+
+        <association property="score" column="rep_id" javaType="Score">
+            <result property="score" column="score" javaType="Double"/>
+            <result property="emp_id" column="emp_id" javaType="String"/>
+            <result property="rep_id" column="rep_id" javaType="Integer"/>
+        </association>
+
+        <association property="initiator" column="rep_initiator" javaType="Employee">
+            <id property="emp_id" column="cid" javaType="String"/>
+            <result property="emp_name" column="cname" javaType="String"/>
+            <result property="emp_position" column ="cpost" javaType="String"/>
+        </association>
+
+        <association property="handler" column="rep_unHandler" javaType="Employee">
+            <id property="emp_id" column="did" javaType="String"/>
+            <result property="emp_name" column="dname" javaType="String"/>
+            <result property="emp_position" column="dpost" javaType="String"/>
+        </association>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="rep_id" parameterType="Report">
+        insert into report(rep_reason,rep_initiator,rep_date,rep_unHandler,rep_projectName,rep_majorClass,rep_imageUrl,rep_status)
+        values(#{rep_reason},#{rep_initiator},#{rep_date},#{rep_unHandler},#{rep_projectName},#{rep_majorClass},#{rep_imageUrl},#{rep_status})
+    </insert>
+
+    <update id="update" parameterType="Report">
+        update report set rep_reason=#{rep_reason},rep_initiator=#{rep_initiator},rep_unHandler=#{rep_unHandler}
+        ,rep_projectName = #{rep_projectName},rep_majorClass=#{rep_majorClass},rep_imageUrl=#{rep_imageUrl},rep_status=#{rep_status} where report.rep_id = #{rep_id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from report where rep_id = #{rep_id};
+    </delete>
+
+    <select id="select" parameterType="Integer" resultMap="report">
+             select cv.*,ce.emp_id cid,ce.emp_name cname,ce.emp_position cpost,d.emp_id did,d.emp_name dname,d.emp_position dpost
+        from report cv
+        left join employee ce on ce.emp_id=cv.rep_initiator
+        left join employee d on d.emp_id = cv.rep_unHandler
+        where cv.rep_id=#{id}
+    </select>
+
+    <select id="selectByCreateId" parameterType="String" resultMap="report">
+         select rp.*,ce.emp_id cid,ce.emp_name cname,ce.emp_position cpost,de.emp_id did,de.emp_name dname,de.emp_position dpost,s.score from report rp
+        left join employee ce on ce.emp_id = rp.rep_initiator
+        left join employee de on de.emp_id = rp.rep_unHandler
+        left join score s on rp.rep_id = s.rep_id
+          where rp.rep_initiator=#{rep_initiator} order by s.score desc;
+    </select>
+
+    <select id="selectByNextDealId" parameterType="String" resultMap="report">
+  select rp.*,ce.emp_id cid,ce.emp_name cname,ce.emp_position cpost,de.emp_id did,de.emp_name dname,de.emp_position dpost,s.score from report rp
+        left join employee ce on ce.emp_id = rp.rep_initiator
+        left join employee de on de.emp_id = rp.rep_unHandler
+        left join score s on rp.rep_id = s.rep_id
+         where rp.rep_unHandler=#{rep_unHandler} order by s.score desc;
+    </select>
+
+
+</mapper>

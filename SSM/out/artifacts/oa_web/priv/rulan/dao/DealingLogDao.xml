@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.rulan.oa.dao.DealingLogDao">
+
+    <resultMap id="dealingLog" type="priv.rulan.oa.entity.DealingLog">
+      <id property="dea_id" column="dea_id" javaType="Integer"/>
+        <result property="dea_report" column="dea_report" javaType="Integer"/>
+        <result property="dea_handler" column="dea_handler" javaType="String"/>
+        <result property="dea_date" column="dea_date" javaType="java.util.Date"/>
+        <result property="dea_type" column="dea_type" javaType="String"/>
+        <result property="dea_result" column="dea_result" javaType="String"/>
+        <result property="dea_remark" column="dea_remark" javaType="String"/>
+        <association property="dealer" column="dea_handler" javaType="Employee">
+            <result property="emp_name" column="emp_name" javaType="String"/>
+            <result property="emp_position" column="emp_position" javaType="String"/>
+        </association>
+    </resultMap>
+
+    <insert id="insert"  parameterType="DealingLog">
+        insert into deallog(dea_report,dea_handler,dea_date,dea_type,dea_result,dea_remark)
+        values(#{dea_report},#{dea_handler},#{dea_date},#{dea_type},#{dea_result},#{dea_remark})
+    </insert>
+
+    <update id="update" parameterType="DealingLog">
+        update deallog set dea_report=#{dea_report},dea_handler=#{dea_handler},dea_date=#{dea_date}
+        ,dea_type=#{dea_type},dea_result=#{dea_result},dea_remark=#{dea_remark}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from deallog where dea_id = #{dea_id};
+    </delete>
+
+    <select id="select" parameterType="Integer" resultMap="dealingLog">
+        select * from deallog where dea_id = #{dea_id}
+    </select>
+
+    <select id="selectByDealingLog" parameterType="Integer" resultMap="dealingLog">
+        select deallog.*,employee.emp_name,employee.emp_position from deallog
+        left join employee on deallog.dea_handler = employee.emp_id;
+    </select>
+
+</mapper>

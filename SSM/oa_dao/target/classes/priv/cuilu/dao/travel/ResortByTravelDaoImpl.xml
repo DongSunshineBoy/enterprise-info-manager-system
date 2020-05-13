@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.cuilu.oa.dao.ResortDao">
+
+    <resultMap id="resort" type="priv.cuilu.oa.entity.ResortByTravel">
+      <id property="id" column="id" javaType="Integer"/>
+        <result property="img" column="img" javaType="String"/>
+        <result property="resortName" column="resortName" javaType="String"/>
+        <result property="presentation" column="presentation" javaType="String"/>
+        <result property="detail_id" column="detail_id" javaType="Integer"/>
+    </resultMap>
+
+    <insert id="insert"  parameterType="Integer">
+        insert into resort(img,resortName,presentation,detail_id)
+        values(#{img},#{resortName},#{presentation},#{detail_id})
+    </insert>
+
+    <update id="update" parameterType="Integer">
+        update resort set img=#{img},resortName=#{resortName},presentation=#{presentation},detail_id=#{detail_id} where id = #{id}
+
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from resort where id = #{id};
+    </delete>
+
+    <select id="select" parameterType="Integer" resultMap="resort">
+        select * from resort where id = #{id}
+    </select>
+
+    <select id="getAll" parameterType="Integer" resultMap="resort">
+        select * from resort;
+    </select>
+
+</mapper>

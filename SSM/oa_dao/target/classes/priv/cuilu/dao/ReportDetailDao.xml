@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.cuilu.oa.dao.ReportDetailDao">
+
+    <resultMap id="reportDetail" type="priv.cuilu.oa.entity.ReportDetail">
+      <id property="det_id" column="det_id" javaType="Integer" />
+        <result property="rep_id" column="rep_id" javaType="Integer"/>
+        <result property="det_moneyType" column="det_moneyType" javaType="String"/>
+        <result property="det_cost" column="det_cost" javaType="Double"/>
+        <result property="det_desc" column="det_desc" javaType="String"/>
+    </resultMap>
+
+    <insert id="insert"  parameterType="ReportDetail">
+        insert into detail(rep_id,det_moneyType,det_cost,det_desc)
+        values(#{rep_id},#{det_moneyType},#{det_cost},#{det_desc})
+    </insert>
+
+    <update id="update" parameterType="ReportDetail">
+        update detail set rep_id=#{rep_id},det_moneyType=#{det_moneyType},det_cost=#{det_cost}
+        ,det_desc=#{det_desc} where det_id = #{det_id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from detail where det_id = #{det_id};
+    </delete>
+
+    <select id="select" parameterType="Integer" resultMap="reportDetail">
+        select * from detail where det_id = #{det_id}
+    </select>
+
+    <select id="selectByDetail" parameterType="Integer" resultMap="reportDetail">
+        select * from detail where rep_id = #{rep_id}
+    </select>
+
+</mapper>

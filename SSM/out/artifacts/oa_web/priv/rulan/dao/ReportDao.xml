@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.rulan.oa.dao.ReportDao">
+
+    <resultMap id="report" type="priv.rulan.oa.entity.Report">
+        <id property="rep_id" column="rep_id" javaType="Integer"/>
+        <result property="rep_reason" column="rep_reason" javaType="String"/>
+        <result property="rep_initiator" column="rep_initiator" javaType="String"/>
+        <result property="rep_date" column="rep_date" javaType="java.util.Date"/>
+        <result property="rep_unHandler" column="rep_unHandler" javaType="String"/>
+        <result property="rep_money" column="rep_money" javaType="Double"/>
+        <result property="rep_status" column="rep_status" javaType="String"/>
+
+        <association property="initiator" column="rep_initiator" javaType="Employee">
+            <result property="emp_name" column="emp_name" javaType="String"/>
+            <result property="emp_position" column ="emp_position" javaType="String"/>
+        </association>
+
+        <association property="handler" column="rep_unHandler" javaType="Employee">
+            <result property="emp_name" column="emp_name" javaType="String"/>
+            <result property="emp_position" column="emp_position" javaType="String"/>
+        </association>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="rep_id" parameterType="Report">
+        insert into report(rep_reason,rep_initiator,rep_date,rep_unHandler,rep_money,rep_status)
+        values(#{rep_reason},#{rep_initiator},#{rep_date},#{rep_unHandler},#{rep_money},#{rep_status})
+    </insert>
+
+    <update id="update" parameterType="Report">
+        update report set rep_reason=#{rep_reason},rep_initiator=#{rep_initiator},rep_unHandler=#{rep_unHandler}
+        ,rep_money=#{rep_money},rep_status=#{rep_status}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from report where rep_id = #{rep_id};
+    </delete>
+
+    <select id="select" parameterType="Integer" resultMap="report">
+        select * from report where rep_id = #{rep_id}
+    </select>
+
+    <select id="selectByCreateId" parameterType="String" resultMap="report">
+         select rp.*,ce.emp_name,ce.emp_position,de.emp_name,de.emp_position from report rp
+        left join employee ce on ce.emp_id = rp.rep_initiator
+        left join employee de on de.emp_id = rp.rep_unHandler
+          where rp.rep_initiator=#{rep_initiator} order by rp.rep_date desc;
+    </select>
+
+    <select id="selectByNextDealId" parameterType="String" resultMap="report">
+       select rp.*,ce.emp_name,ce.emp_position,de.emp_name,de.emp_position from report rp
+        left join employee ce on ce.emp_id = rp.rep_initiator
+        left join employee de on de.emp_id = rp.rep_unHandler
+          where rp.rep_unHandler=#{rep_unHandler} order by rp.rep_date desc;
+    </select>
+
+</mapper>

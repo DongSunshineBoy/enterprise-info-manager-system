@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.rulan.oa.dao.ScoreDao">
+
+    <resultMap id="Score" type="priv.rulan.oa.entity.Score">
+      <id property="id" column="id" javaType="String" />
+        <result property="emp_id" column="emp_id" javaType="String"/>
+        <result property="score" column="score" javaType="Double"/>
+        <result property="rep_id" column="rep_id" javaType="Integer"/>
+        <association property="employee" column="emp_id" javaType="Employee">
+            <result property="emp_name" column="emp_name" javaType="String"/>
+        </association>
+    </resultMap>
+
+    <insert id="insert"  parameterType="Score">
+        insert into score(emp_id,score,rep_id)
+        values(#{emp_id},#{score},#{rep_id})
+    </insert>
+
+    <update id="update" parameterType="Score">
+        update score set emp_id=#{emp_id},score=#{score},rep_id = #{rep_id}
+       where rep_id = #{rep_id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from score where rep_id = #{rep_id};
+    </delete>
+
+    <select id="select" parameterType="Integer" resultMap="Score">
+        select * from score where rep_id = #{rep_id}
+    </select>
+
+    <select id="selectByDetail" parameterType="Integer" resultMap="Score">
+        select * from score where rep_id = #{rep_id}
+    </select>
+
+</mapper>

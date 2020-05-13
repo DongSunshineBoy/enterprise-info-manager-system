@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.cuilu.oa.dao.HotelDao">
+
+    <resultMap id="hotel" type="priv.cuilu.oa.entity.HotelByTravel">
+      <id property="id" column="id" javaType="Integer"/>
+        <result property="city" column="city" javaType="String"/>
+        <result property="inDate" column="inDate" javaType="java.util.Date"/>
+        <result property="outDate" column="outDate" javaType="java.util.Date"/>
+        <result property="containNum" column="containNum" javaType="Integer"/>
+        <result property="hotelName" column="hotelName" javaType="String"/>
+        <result property="hotelDesc" column="hotelDesc" javaType="String"/>
+        <result property="hotelLevel" column="hotelLevel" javaType="String"/>
+    </resultMap>
+
+    <insert id="insert"  parameterType="Integer">
+        insert into hotel(city,inDate,outDate,containNum,hotelName,hotelDesc,hotelLevel)
+        values(#{city},#{inDate},#{outDate},#{containNum},#{hotelName},#{hotelDesc},#{hotelLevel})
+    </insert>
+
+    <update id="update" parameterType="Integer">
+        update hotel set city=#{city},inDate=#{inDate},outDate=#{outDate}
+        ,containNum=#{containNum},hotelName=#{hotelName},hotelDesc=#{hotelDesc},hotelLevel=#{hotelLevel}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from hotel where id = #{id};
+    </delete>
+
+    <select id="select" parameterType="HotelByTravel" resultMap="hotel">
+        select * from hotel where inDate &gt; #{inDate} and outDate &lt;= #{outDate} and city = #{city}
+    </select>
+
+</mapper>

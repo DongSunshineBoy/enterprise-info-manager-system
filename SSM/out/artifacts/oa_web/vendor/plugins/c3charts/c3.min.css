@@ -1,0 +1,19 @@
+] "GET /favicon.ico HTTP/1.1" 404 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:07 +0800] "GET /oa_web/1 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/to_login HTTP/1.1" 200 3773
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/js/utility/utility.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/skin/default_skin/css/theme.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/vendor/jquery/jquery-1.11.1.min.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/admin-tools/admin-forms/css/admin-forms.css HTTP/1.1" 200 116906
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/vendor/jquery/jquery_ui/jquery-ui.min.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/js/main.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/js/demo/demo.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/fonts/font-awesome/fontawesome-webfonte0a5.html?v=4.3.0 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/to_login HTTP/1.1" 200 3773
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/img/favicon.ico HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/fonts/font-awesome/fontawesome-webfonte0a5.woff?v=4.3.0 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/to_login HTTP/1.1" 200 3773
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/assets/fonts/font-awesome/fontawesome-webfonte0a5.ttf?v=4.3.0 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:51:08 +0800] "GET /oa_web/to_login HTTP/1.1" 200 3773
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:52:17 +0800] "POST /oa_web/login HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [30/Apr/2020:18:52:18 +0800] "GET /oa_web/self HTTP/1.1" 200 99
